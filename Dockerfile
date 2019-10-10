@@ -1,8 +1,9 @@
-FROM resin/rpi-raspbian
+FROM python:3.6-slim
 RUN apt-get update \
-    && apt-get install python3 python3-dev python3-pip gcc g++
+    && apt-get install build-essential gcc g++ -y
 RUN pip3 install --upgrade setuptools pip
 COPY requirements.txt .
 RUN pip3 install -r requirements.txt
 COPY src /usr/local/smartbolito-bot/
-CMD python3 /usr/local/smartbolito-bot/smartbolito.py
+WORKDIR /usr/local/smartbolito-bot
+CMD python smartbolito.py
