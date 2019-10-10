@@ -1,0 +1,4 @@
+slackclient==2.2.1
+RPi.GPI==0.7.0
+rpi_ws281x
+adafruit-circuitpython-neopixel
