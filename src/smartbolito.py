@@ -6,25 +6,26 @@ import os
 @RTMClient.run_on(event='message')
 def handle_event(**payload):
     data = payload['data']
-    web_client = payload['web_client']
+    if 'subtype' not in data or data['subtype'] != 'bot_message':
+        web_client = payload['web_client']
 
-    if data.get('files'):
-        file_id = data.get('files')[0]['id']
-        file_content = web_client.files_info(file=file_id).data['content']
+        if data.get('files'):
+            file_id = data.get('files')[0]['id']
+            file_content = web_client.files_info(file=file_id).data['content']
 
-    elif data.get('text'):
-        msg = data.get('text').strip().lower()
-        if msg == 'on':
-            pass
-        elif msg == 'off':
-            leds.turn_off()
+        elif data.get('text'):
+            msg = data.get('text').strip().lower()
+            if msg == 'on':
+                pass
+            elif msg == 'off':
+                leds.turn_off()
 
-    channel_id = data.get('channel')
+        channel_id = data.get('channel')
 
-    web_client.chat_postMessage(
-        channel=channel_id,
-        text=f"I am not implemented yet"
-    )
+        web_client.chat_postMessage(
+            channel=channel_id,
+            text=f"I am not implemented yet"
+        )
 
 
 if __name__ == '__main__':
