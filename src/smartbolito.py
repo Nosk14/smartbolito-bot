@@ -4,7 +4,7 @@ import os
 
 
 @RTMClient.run_on(event='message')
-def say_hello(**payload):
+def handle_event(**payload):
     data = payload['data']
     web_client = payload['web_client']
 
@@ -19,12 +19,11 @@ def say_hello(**payload):
         elif msg == 'off':
             leds.turn_off()
 
-    channel_id = data['channel']
-    user = data['user']
+    channel_id = data.get('channel')
 
     web_client.chat_postMessage(
         channel=channel_id,
-        text=f"Hi <@{user}>! I am not implemented yet"
+        text=f"I am not implemented yet"
     )
 
 
