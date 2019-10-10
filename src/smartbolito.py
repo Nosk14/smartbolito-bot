@@ -16,7 +16,7 @@ def handle_event(**payload):
         elif data.get('text'):
             msg = data.get('text').strip().lower()
             if msg == 'on':
-                pass
+                leds.turn_on()
             elif msg == 'off':
                 leds.turn_off()
 
