@@ -13,5 +13,9 @@ def turn_off():
 
 
 def turn_on():
-    leds.fill((255, 127, 0))
+    set_color((255, 127, 0))
+
+
+def set_color(color):
+    leds.fill(color)
     leds.show()
