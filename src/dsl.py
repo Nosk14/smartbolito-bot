@@ -57,15 +57,20 @@ class Program(Thread):
                 operation, params = line.strip().split(maxsplit=1)
                 if operation == "TAG":
                     self.tags[params] = i - 1
+
+                elif operation == "JUMP":
+                    self.__program_instructions.append((OPERATIONS[operation], [params, self]))
+                    i += 1
+
                 else:
-                    self.__program_instructions.append((OPERATIONS[operation], params))
+                    self.__program_instructions.append((OPERATIONS[operation], [params]))
                     i += 1
 
     def run(self):
         try:
             while self.__continue and self.pc < len(self.__program_instructions):
                 instruction, params = self.__program_instructions[self.pc]
-                instruction(params)
+                instruction(*params)
                 self.pc += 1
         except Exception as ex:
             log.error(ex)
