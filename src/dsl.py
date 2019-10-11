@@ -41,6 +41,7 @@ class Program(Thread):
 
     def __init__(self, raw_program):
         super().__init__()
+        self.setDaemon(True)
         self.__continue = True
         self.__program_instructions = []
         self.tags = {}
