@@ -26,6 +26,8 @@ def handle_event(**payload):
                 leds.set_color([int(c) for c in colors])
             elif msg.startswith('random-color'):
                 leds.set_random_color()
+            elif msg.startswith('party-hard'):
+                leds.set_random_color_two()
 
         channel_id = data.get('channel')
         event_timestamp = data['ts']
