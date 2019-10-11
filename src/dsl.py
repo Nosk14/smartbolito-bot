@@ -1,6 +1,7 @@
 from threading import Thread
 from leds import leds
 import time
+import logging as log
 
 COLORS = {
     'X': (0, 0, 0),
@@ -61,8 +62,11 @@ class Program(Thread):
                     i += 1
 
     def run(self):
-        while self.__continue and self.pc < len(self.__program_instructions):
-            instruction, params = self.__program_instructions[self.pc]
-            instruction(params)
-            self.pc += 1
+        try:
+            while self.__continue and self.pc < len(self.__program_instructions):
+                instruction, params = self.__program_instructions[self.pc]
+                instruction(params)
+                self.pc += 1
+        except Exception as ex:
+            log.error(ex)
 
