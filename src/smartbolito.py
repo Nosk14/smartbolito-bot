@@ -24,7 +24,7 @@ def handle_event(**payload):
             elif msg.startswith('color'):
                 colors = msg.split()[1:]
                 leds.set_color([int(c) for c in colors])
-             elif msg.startswith('random-color'):
+            elif msg.startswith('random-color'):
                 leds.set_random_color()
 
         channel_id = data.get('channel')
