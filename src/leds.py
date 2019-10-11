@@ -1,6 +1,7 @@
 from neopixel import NeoPixel, RGB
 import os
 import board
+import random
 
 
 NUM_LEDS = 50
@@ -18,4 +19,8 @@ def turn_on():
 
 def set_color(color):
     leds.fill(color)
+    leds.show()
+
+def set_random_color():
+    leds.fill(random.randrange(255),random.randrange(255),random.randrange(255))
     leds.show()
